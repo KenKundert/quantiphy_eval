@@ -1,0 +1,33 @@
+*.py[co]
+.*.swp
+install.out
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+images/*.svg
+examples/*.svg
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+.test*.sum
+
+#Translations
+*.mo
+
+#Mr Developer
+.mr.developer.cfg
+
