@@ -8,7 +8,7 @@ dependencies = 'inform pyparsing quantiphy'
 
 setup(
     name='quantiphy_eval',
-    version='0.1.0',
+    version='0.1.1',
     description='calculations with physical quantities',
     long_description=readme,
     long_description_content_type='text/x-rst',

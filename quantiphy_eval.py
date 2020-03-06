@@ -52,7 +52,7 @@ active_operators = None
 active_functions = None
 active_constants = None
 __released__ = '2020-03-06'
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 # Parser {{{1
 def rm_commas(s):
