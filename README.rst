@@ -2,7 +2,7 @@ QuantiPhy Eval — Computations with Physical Quantities
 ======================================================
 
 :Author: Ken Kundert
-:Version: 0.1.1
+:Version: 0.2.0
 :Released: 2020-03-06
 
 
@@ -99,7 +99,7 @@ Releases
 --------
 
 **Latest development release**:
-    | Version: 0.1.1
+    | Version: 0.2.0
     | Released: 2020-03-06
 
     - ``rm_commas`` now converts semicolons to commas
