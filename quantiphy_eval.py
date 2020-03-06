@@ -1,13 +1,24 @@
 # Description {{{1
 # Imports {{{1
-from pyparsing import (
-    Literal, Word, Group, Optional, ZeroOrMore, Forward,
-    nums, alphas, delimitedList, Regex, ParseException, ParseResults
-)
 import math
 import operator
-from quantiphy import Quantity
 from inform import Error, full_stop
+from pyparsing import (
+    Forward,
+    Group,
+    Literal,
+    Optional,
+    ParseException,
+    ParseResults,
+    Regex,
+    Word,
+    ZeroOrMore,
+    alphas,
+    delimitedList,
+    nums,
+    restOfLine,
+)
+from quantiphy import Quantity
 
 # Parameters {{{1
 OPERATORS = {
@@ -45,7 +56,13 @@ __version__ = '0.1.0'
 
 # Parser {{{1
 def rm_commas(s):
-    return s.replace(',', '')
+    """
+    Remove commans
+
+    First removes any commas from the argument.
+    It then converts all semicolons to commas.
+    """
+    return s.replace(',', '').replace(';', ',')
 
 # push_first {{{2
 def push_first(strg, loc, toks):
@@ -82,6 +99,7 @@ def BNF():
         UNIT_SYMBOLS = '°ÅΩ℧'
         CURRENCY_SYMBOLS = '$€¥£₩₺₽₹ɃΞȄ'
 
+        comment = '#' + Optional(restOfLine)
         sign = named_regex('sign', '[-+−＋]?')
         space = r'[\s ]'  # the space in this regex is a non-breaking space
         required_digits = r'(?:[0-9][0-9_]*[0-9]|[0-9]+)'  # allow interior underscores
@@ -141,6 +159,7 @@ def BNF():
         term = factor + ZeroOrMore((multop + factor).setParseAction(push_first))
         expr << term + ZeroOrMore((addop + term).setParseAction(push_first))
         bnf = expr
+        bnf.ignore( comment )
     return bnf
 
 # Calculator {{{1
