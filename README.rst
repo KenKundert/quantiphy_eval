@@ -6,9 +6,9 @@ QuantiPhy Eval — Computations with Physical Quantities
 :Released: 2020-03-06
 
 
-A companion to *QuantiPhy*, *quantiphy_eval* evaluates strings that contains 
-a simple algebraic expression that involves quantities and returns a quantity.  
-For example::
+A companion to `QuantiPhy <https://quantiphy.readthedocs.io>`_, *quantiphy_eval* 
+evaluates strings containing simple algebraic expressions that involve 
+quantities. It returns a quantity.  For example::
 
     >>> from quantiphy_eval import evaluate
 
