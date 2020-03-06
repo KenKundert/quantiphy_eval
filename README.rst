@@ -2,8 +2,8 @@ QuantiPhy Eval — Computations with Physical Quantities
 ======================================================
 
 :Author: Ken Kundert
-:Version: 0.0.0
-:Released: 2020-02-14
+:Version: 0.1.0
+:Released: 2020-03-06
 
 
 A companion to *QuantiPhy*, *quantiphy_eval* evaluates strings that contains 
@@ -69,8 +69,8 @@ Releases
 --------
 
 **Latest development release**:
-    | Version: 0.0.0
-    | Released: 2020-02-14
+    | Version: 0.1.0
+    | Released: 2020-03-06
 
 **0.1 (2019-09-03)**:
     - Add support for user-defined constants and functions.
