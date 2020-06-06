@@ -96,7 +96,7 @@ def BNF():
             return '(?P<%s>%s)' % (name, regex)
 
         input_sf = 'kMGTPEZYmunpfazy'
-        UNIT_SYMBOLS = '°ÅΩ℧'
+        UNIT_SYMBOLS = '°ÅΩƱΩ℧'
         CURRENCY_SYMBOLS = '$€¥£₩₺₽₹ɃΞȄ'
 
         comment = '#' + Optional(restOfLine)

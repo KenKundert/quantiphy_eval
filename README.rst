@@ -102,10 +102,11 @@ Releases
     | Version: 0.2.0
     | Released: 2020-03-06
 
+**0.2 (2020-03-06)**:
     - ``rm_commas`` now converts semicolons to commas
     - support comments
 
-**0.1 (2019-09-03)**:
+**0.1 (2020-03-05)**:
     - Add support for user-defined constants and functions.
     - add ``rm_commas`` function.
 
