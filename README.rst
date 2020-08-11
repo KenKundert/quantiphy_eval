@@ -2,8 +2,8 @@ QuantiPhy Eval — Computations with Physical Quantities
 ======================================================
 
 :Author: Ken Kundert
-:Version: 0.2.0
-:Released: 2020-03-06
+:Version: 0.2.1
+:Released: 2020-08-11
 
 
 A companion to `QuantiPhy <https://quantiphy.readthedocs.io>`_, *quantiphy_eval* 
@@ -118,8 +118,8 @@ Releases
 --------
 
 **Latest development release**:
-    | Version: 0.2.0
-    | Released: 2020-03-06
+    | Version: 0.2.1
+    | Released: 2020-08-11
 
 **0.3 (2020-03-06)**:
     - complete re-write
