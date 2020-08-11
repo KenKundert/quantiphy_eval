@@ -17,7 +17,7 @@ setup(
     url = 'https://github.com/kenkundert/quantiphy_eval',
     download_url = 'https://github.com/kenkundert/quantiphy_eval/tarball/master',
     license = 'GPLv3+',
-    py_modules = 'quantiphy_eval'.split(),
+    packages = 'quantiphy_eval'.split(),
     install_requires = dependencies.split(),
     setup_requires = 'pytest-runner>=2.0'.split(),
     tests_require = 'pytest'.split(),
