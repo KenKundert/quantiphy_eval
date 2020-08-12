@@ -4,7 +4,6 @@ from codecs import open
 with open('README.rst', encoding="UTF-8") as f:
     readme = f.read()
 
-dependencies = 'inform pyparsing quantiphy'
 
 setup(
     name = 'quantiphy_eval',
@@ -18,8 +17,7 @@ setup(
     download_url = 'https://github.com/kenkundert/quantiphy_eval/tarball/master',
     license = 'GPLv3+',
     packages = 'quantiphy_eval'.split(),
-    install_requires = dependencies.split(),
-    setup_requires = 'pytest-runner>=2.0'.split(),
+    install_requires = 'inform quantiphy'.split(),
     tests_require = 'pytest'.split(),
     python_requires = '>=3.6',
     classifiers = [

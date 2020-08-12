@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # encoding: utf8
 
 from quantiphy_eval import evaluate, initialize, rm_commas
@@ -5,8 +7,6 @@ from inform import Error
 from pytest import raises, approx
 from quantiphy import Quantity
 import math
-
-#!/usr/bin/env python3
 
 my_constants = dict(
     pi = math.pi,
