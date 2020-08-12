@@ -121,9 +121,10 @@ Releases
     | Version: 0.3.0
     | Released: 2020-08-12
 
-**0.3 (2020-03-06)**:
-    - complete re-write
-    - split *evaluate* into *evaluate* and *initialize*.
+**0.3 (2020-08-12)**:
+    - complete re-write, parser now implemented with ply rather than pyparsing.
+    - all built-in constants and functions have been removed.
+    - split *evaluate* into two: *evaluate* and *initialize*.
 
 **0.2 (2020-03-06)**:
     - *rm_commas* now converts semicolons to commas
