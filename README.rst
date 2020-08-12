@@ -12,12 +12,12 @@ quantities. It returns a quantity.  For example::
 
     >>> from quantiphy_eval import evaluate
 
-    >>> average = evaluate('($1.2M + $1.3M)/2', '$')
-    >>> print(f'{average}')
+    >>> avg_price = evaluate('($1.2M + $1.3M)/2', '$')
+    >>> print(avg_price)
     $1.25M
 
-    >>> f_avg = evaluate('(122.317MHz + 129.349MHz)/2', 'Hz')
-    >>> print(f'{f_avg}')
+    >>> avg_freq = evaluate('(122.317MHz + 129.349MHz)/2', 'Hz')
+    >>> print(avg_freq)
     125.83 MHz
 
 *QuantiPhy Eval* is used in `networth <https://github.com/KenKundert/networth>`_ 
