@@ -82,9 +82,9 @@ Both *arguments* and *functions* take dictionaries that overwrite any previously
 saved values. *quantity* takes a *quantiphy* *Quantity* class. The return value 
 of *evaluate* will be an object of this class.
 
-*rm_commas* function for removing commas from an expression. This is used if 
-your number contain commas. Simply stripping the commas it would prevent you 
-from using multi-argument functions, however after removing the commas 
+*rm_commas* is a function for removing commas from an expression. This is used 
+if your number contain commas. Simply stripping the commas it would prevent you 
+from using multi-argument functions.  However after removing the commas 
 *rm_commas* also converts semicolons to commas.  So the previous example could 
 be rewritten as::
 
