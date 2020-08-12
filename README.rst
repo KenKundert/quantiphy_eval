@@ -62,7 +62,7 @@ remembers these values between calls to *evaluate*::
     ω₀ = 6.2832 Mrads/s
 
 Similarly, *QuantiPhy Eval* provides no built-in functions by default, but you 
-can add any you need.
+can add any you need::
 
     >>> def median(*args):
     ...    args = sorted(args)
