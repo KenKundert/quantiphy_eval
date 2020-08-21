@@ -55,8 +55,9 @@ cases = [
 def test_cases():
     initialize(my_constants, my_funcs)
     for expr, units, expected in cases:
-        print(expr)
-        assert str(evaluate(expr, units)) == expected
+        result = str(evaluate(expr, units))
+        print(f'given={expr}, {units}, expected = {expected}, result = {result}')
+        assert result == expected
 
 def test_quantities():
     assert evaluate('$2.5M').render() == '$2.5M'

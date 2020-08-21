@@ -97,8 +97,8 @@ be rewritten as::
     >>> print(median_price.fixed(show_commas=True))
     $706,781
 
-Finally, *QuantiPhy Eval* supports comments. A ``#`` and anything that follows 
-it to the end of the line is ignored::
+*QuantiPhy Eval* supports comments. A ``#`` and anything that follows it to the 
+end of the line is ignored::
 
     >>> average_price = evaluate(
     ...     rm_commas('''
@@ -113,9 +113,21 @@ it to the end of the line is ignored::
     >>> print(average_price.fixed(show_commas=True, prec=2, strip_zeros=False))
     $697,351.33
 
+Finally, *QuantiPhy Eval* uses `inform.Error <https://inform.readthedocs.io>`_ 
+for error reporting.
+
+    >>> from inform import Error
+
+    >>> try:
+    ...     Vt = evaluate('kT/q', 'V')
+    ...     print(Vt)
+    ... except Error as e:
+    ...     print(str(e))
+    kT: variable unknown.
+
 
 Releases
---------
+-------
 
 **Latest development release**:
     | Version: 0.3.0

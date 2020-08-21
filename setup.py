@@ -16,8 +16,8 @@ setup(
     url = 'https://github.com/kenkundert/quantiphy_eval',
     download_url = 'https://github.com/kenkundert/quantiphy_eval/tarball/master',
     license = 'GPLv3+',
-    packages = 'quantiphy_eval'.split(),
-    install_requires = 'inform quantiphy'.split(),
+    py_modules = 'quantiphy_eval'.split(),
+    install_requires = 'inform quantiphy sly'.split(),
     tests_require = 'pytest'.split(),
     python_requires = '>=3.6',
     classifiers = [
