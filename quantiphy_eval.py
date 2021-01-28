@@ -7,8 +7,8 @@ from sly import Lexer, Parser
 VARIABLES = {}
 FUNCTIONS = {}
 QUANTITY = Quantity
-__version__ = '0.3.1'
-__released__ = '2020-08-20'
+__version__ = '0.3.2'
+__released__ = '2021-01-27'
 __all__ = ['evaluate', 'initialize', 'rm_commas', 'Error']
 
 
