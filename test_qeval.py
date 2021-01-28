@@ -13,6 +13,7 @@ my_constants = dict(
     π = math.pi,
     tau = math.tau,
     τ = math.tau,
+    T = 300,
 )
 for name in 'h ħ k q c ε₀ eps0 μ₀ mu0'.split():
     my_constants[name] = Quantity(name)
@@ -50,12 +51,16 @@ cases = [
     ('max(1MHz, 4MHz)', 'Hz', '4 MHz'),
     ('max(1+1, 2+2)', None, '4'),
     ('max(1+1, 2+2, 3+3)', None, '6'),
+    ('Vt = k*T/q', None, 'Vt = 25.852m'),
+    ('Vt = k*T/q "V"', None, 'Vt = 25.852 mV'),
+    ('k*T/q', None, '25.852m'),
+    ('k*T/q "V"', None, '25.852 mV'),
 ]
 
 def test_cases():
     initialize(my_constants, my_funcs)
     for expr, units, expected in cases:
-        result = str(evaluate(expr, units))
+        result = evaluate(expr, units).render(show_label=True)
         print(f'given={expr}, {units}, expected = {expected}, result = {result}')
         assert result == expected
 

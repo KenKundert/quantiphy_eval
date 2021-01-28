@@ -23,6 +23,7 @@ class QELexer(Lexer):
         CURRENCY_WITH_SCALE_FACTOR,
         CURRENCY_WITH_EXPONENT,
         SIMPLE_CURRENCY,
+        UNITS,
     )
     literals = "=+-*/(),"
     ignore = " \t"
@@ -40,7 +41,7 @@ class QELexer(Lexer):
     )   # leading or trailing digits are optional, but not both
     _exponent = '[eE][-+]?[0-9]+'
     _scale_factor = f'[{_SCALE_FACTORS}]'
-    _units = r'[ ]?[a-zA-Z{us}]*'.format(us=_UNIT_SYMBOLS)  # examples: Ohms, Ω
+    _units = f'[ ]?[a-zA-Z{_UNIT_SYMBOLS}]*'  # examples: Ohms, Ω
     _currency = f'[{_CURRENCY_SYMBOLS}]'
 
     NUMBER_WITH_EXPONENT = f'{_mantissa}{_exponent}{_units}'
@@ -48,12 +49,13 @@ class QELexer(Lexer):
     CURRENCY_WITH_EXPONENT = f'{_currency}{_mantissa}{_exponent}'
     CURRENCY_WITH_SCALE_FACTOR = f'{_currency}{_mantissa}{_scale_factor}'
     SIMPLE_CURRENCY = f'{_currency}{_mantissa}'
+    UNITS = f'"[^"]*"'
 
     # names
     _greek = "αβγδεζηθικλνξοπρςστµμυφχψω"
     _Greek = "ΑΒΓΔΕΖΗΘΙΚΛΝΞΟΠΡΣΣΤΜΜΥΦΧΨΩ"
     _special = "ħ"
-    NAME = f"[a-zA-Z_{_greek}{_Greek}{_special}][a-zA-Z0-9_₀]*"
+    NAME = f"[a-zA-Z_{_greek}{_Greek}{_special}][a-zA-Z0-9_]*[₀₁₂₃₄₅₆₇₈₉]?"
 
     # special tokens
     ignore_comment = r'\#.*'
@@ -61,7 +63,6 @@ class QELexer(Lexer):
     @_(r"\n+")
     def ignore_newline(self, t):
         self.lineno += len(t.value)
-
 
     def error(self, t):
         raise Error(f"Illegal character '{t.value[0]}'.", culprit=get_culprit())
@@ -94,9 +95,20 @@ class QEParser(Parser):
         return p.NAME, p.expr
 
 
+    @_("NAME '=' expr UNITS")
+    def statement(self, p):
+        VARIABLES[p.NAME] = p.expr
+        return p.NAME, QUANTITY(p.expr, p.UNITS[1:-1])
+
+
     @_("expr")
     def statement(self, p):
         return None, p.expr
+
+
+    @_("expr UNITS")
+    def statement(self, p):
+        return None, QUANTITY(p.expr, p.UNITS[1:-1])
 
 
     @_("expr '+' expr",
