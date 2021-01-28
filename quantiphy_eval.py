@@ -33,7 +33,7 @@ from sly import Lexer, Parser
 VARIABLES = {}
 FUNCTIONS = {}
 QUANTITY = Quantity
-__version__ = '0.3.2'
+__version__ = '0.4.0'
 __released__ = '2021-01-27'
 __all__ = ['evaluate', 'initialize', 'rm_commas', 'Error']
 
