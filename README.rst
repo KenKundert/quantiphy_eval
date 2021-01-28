@@ -140,6 +140,9 @@ Releases
     | Version: 0.4.0
     | Released: 2021-01-27
 
+**0.4 (2021-01-27)**:
+    - Add ability to explicitly specify units (or model) in evaluated string.
+
 **0.3 (2020-08-12)**:
     - complete re-write, parser now implemented with ply rather than pyparsing.
     - all built-in constants and functions have been removed.
