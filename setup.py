@@ -7,7 +7,7 @@ with open('README.rst', encoding="UTF-8") as f:
 
 setup(
     name = 'quantiphy_eval',
-    version = '0.3.2',
+    version = '0.3.1',
     description = 'calculations with physical quantities',
     long_description = readme,
     long_description_content_type = 'text/x-rst',

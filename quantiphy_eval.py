@@ -1,3 +1,29 @@
+# QuantiPhy Eval -- Evaluate expressions that contains physical quantities
+# encoding: utf8
+
+# Description {{{1
+"""
+*QuantiPhy_Eval* is a companion library to *QuantiPhy* that allows strings that
+contain expressions to be evaluated. The expressions may contain physical
+quantities.
+"""
+
+# License {{{1
+# Copyright (C) 2020-2021 Kenneth S. Kundert
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see [http://www.gnu.org/licenses/].
+
+# Imports {{{1
 from inform import display, Error, full_stop, get_culprit
 from quantiphy import Quantity
 import operator
