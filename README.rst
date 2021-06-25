@@ -134,7 +134,7 @@ for error reporting.
 
 
 Releases
--------
+--------
 
 **Latest development release**:
     | Version: 0.4.0
