@@ -1,6 +1,15 @@
 QuantiPhy Eval — Computations with Physical Quantities
 ======================================================
 
+.. image:: https://pepy.tech/badge/quantiphy_eval/month
+    :target: https://pepy.tech/project/quantiphy_eval
+
+.. image:: https://img.shields.io/pypi/v/quantiphy_eval.svg
+    :target: https://pypi.python.org/pypi/quantiphy_eval
+
+.. image:: https://img.shields.io/pypi/pyversions/quantiphy_eval.svg
+    :target: https://pypi.python.org/pypi/quantiphy_eval/
+
 :Author: Ken Kundert
 :Version: 0.4.0
 :Released: 2021-01-27
