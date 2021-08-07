@@ -97,7 +97,7 @@ class QELexer(Lexer):
         self.lineno += len(t.value)
 
     def error(self, t):
-        raise Error(f"Illegal character '{t.value[0]}'.", culprit=get_culprit())
+        raise Error(f"illegal character '{t.value[0]}'.", culprit=get_culprit())
 
 
 # QEParser {{{1
@@ -220,9 +220,9 @@ class QEParser(Parser):
 
     def error(self, p):
         if p:
-            raise Error(f"Syntax error at '{p.value}'.", culprit=get_culprit())
+            raise Error(f"syntax error at '{p.value}'.", culprit=get_culprit())
         else:
-            raise Error("Syntax error at EOF.", culprit=get_culprit())
+            raise Error("syntax error at EOF.", culprit=get_culprit())
 
 
 # Build the parser {{{1
@@ -244,12 +244,9 @@ def initialize(variables = None, functions = None, quantity = None):
         Functions you wish to pre-define.
     """
     global VARIABLES, FUNCTIONS, QUANTITY
-    if variables is not None:
-        VARIABLES = variables
-    if functions is not None:
-        FUNCTIONS = functions
-    if quantity is not None:
-        QUANTITY = quantity
+    VARIABLES = {} if variables is None else variables
+    FUNCTIONS = {} if functions is None else functions
+    QUANTITY = Quantity if quantity is None else quantity
 
 
 # Evaluate expression {{{2

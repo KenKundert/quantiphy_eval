@@ -2,12 +2,15 @@
 
 # encoding: utf8
 
+# Imports {{{1
 from quantiphy_eval import evaluate, initialize, rm_commas
 from inform import Error
-from pytest import raises, approx
+import pytest
 from quantiphy import Quantity
 import math
 
+# Globals and Utilities {{{1
+parametrize = pytest.mark.parametrize
 my_constants = dict(
     pi = math.pi,
     π = math.pi,
@@ -39,30 +42,42 @@ my_funcs = dict(
     two_pi = lambda: math.tau,
 )
 
-cases = [
-    (rm_commas('$164,921.77 + $161,840.03'), '$', '$326.76k'),
-    ('1MHz', None, '1 MHz'),
-    ('1GiB', None, '1 GiB'),
-    ('1MHz + 1MHz', 'Hz', '2 MHz'),
-    ('abs(1+1)', None, '2'),
-    ('abs(1MHz)', 'Hz', '1 MHz'),
-    ('abs($161840.03)', '$', '$161.84k'),
-    ('abs(1e-9)', 'F', '1 nF'),
-    ('max(1MHz, 4MHz)', 'Hz', '4 MHz'),
-    ('max(1+1, 2+2)', None, '4'),
-    ('max(1+1, 2+2, 3+3)', None, '6'),
-    ('Vt = k*T/q', None, 'Vt = 25.852m'),
-    ('Vt = k*T/q "V"', None, 'Vt = 25.852 mV'),
-    ('k*T/q', None, '25.852m'),
-    ('k*T/q "V"', None, '25.852 mV'),
-]
+class Dollars(Quantity):
+    units = '$'
+    form = 'fixed'
+    prec = 2
+    strip_zeros = False
+    show_commas = True
 
-def test_cases():
+# Test fixture {{{1
+@pytest.fixture(scope="function", autouse=True)
+def initialize_evaluator():
     initialize(my_constants, my_funcs)
-    for expr, units, expected in cases:
-        result = evaluate(expr, units).render(show_label=True)
-        print(f'given={expr}, {units}, expected = {expected}, result = {result}')
-        assert result == expected
+
+# Tests {{{1
+@parametrize(
+    'given, units, expected', [
+        (rm_commas('$164,921.77 + $161,840.03'), '$', '$326.76k'),
+        ('1MHz', None, '1 MHz'),
+        ('1GiB', None, '1 GiB'),
+        ('1MHz + 1MHz', 'Hz', '2 MHz'),
+        ('abs(1+1)', None, '2'),
+        ('abs(1MHz)', 'Hz', '1 MHz'),
+        ('abs($161840.03)', '$', '$161.84k'),
+        ('abs(1e-9)', 'F', '1 nF'),
+        ('max(1MHz, 4MHz)', 'Hz', '4 MHz'),
+        ('max(1+1, 2+2)', None, '4'),
+        ('max(1+1, 2+2, 3+3)', None, '6'),
+        ('Vt = k*T/q', None, 'Vt = 25.852m'),
+        ('Vt = k*T/q "V"', None, 'Vt = 25.852 mV'),
+        ('k*T/q', None, '25.852m'),
+        ('k*T/q "V"', None, '25.852 mV'),
+    ]
+)
+def test_cases(given, units, expected):
+    result = evaluate(given, units).render(show_label=True)
+    print(f'given={given}, {units}, expected = {expected}, result = {result}')
+    assert result == expected
 
 def test_quantities():
     assert evaluate('$2.5M').render() == '$2.5M'
@@ -77,9 +92,13 @@ def test_quantities():
     assert evaluate('two_pi()*1420.405751786MHz', 'Hz').render() == '8.9247 GHz'
     assert evaluate(rm_commas('($1,220,317 + $1,293,494)/2'), '$').render() == '$1.2569M'
     assert evaluate('($1_220_317 + $1_293_494)/2', '$').render() == '$1.2569M'
-    with raises(Error) as exception:
+    with pytest.raises(Error) as exception:
         evaluate("2*x")
     assert str(exception.value) == "x: variable unknown."
+
+def test_quantities2():
+    initialize(quantity=Dollars)
+    assert evaluate('($1.3M + -$1.2M)/2', '$').render() == '$50,000.00'
 
 def test_functions():
     assert evaluate('abs(-1+-1)').render() == '2'
@@ -89,21 +108,38 @@ def test_functions():
     #assert evaluate('max(1MHz, 4MHz)').render() == '4 MHz'
     assert evaluate('max(1+1, 2+2)').render() == '4'
     assert evaluate('max(1+1, 2+2, 3+3)').render() == '6'
+
     with Quantity.prefs(prec=2, strip_zeros=False, show_commas=True):
         res = evaluate(rm_commas('($1,220,317 + $1,293,494)/2'), '$')
         assert res.fixed() == '$1,256,905.50'
-    with raises(Error) as exception:
+
+    with pytest.raises(Error) as exception:
         evaluate("two_pi(0.1)")
     assert str(exception.value) == "two_pi: <lambda>() takes 0 positional arguments but 1 was given."
-    with raises(Error) as exception:
+
+    with pytest.raises(Error) as exception:
         evaluate("abs()")
     assert str(exception.value) == "abs: abs() takes exactly one argument (0 given)."
-    with raises(Error) as exception:
+
+    with pytest.raises(Error) as exception:
         evaluate("abs(1, 2)")
     assert str(exception.value) == "abs: abs() takes exactly one argument (2 given)."
-    with raises(Error) as exception:
+
+    with pytest.raises(Error) as exception:
         evaluate("three_pi()")
     assert str(exception.value) == "three_pi: function unknown."
+
+    with pytest.raises(Error) as exception:
+        evaluate("(10+5))")
+    assert str(exception.value) == "syntax error at ')'."
+
+    with pytest.raises(Error) as exception:
+        evaluate("#nutz")
+    assert str(exception.value) == "syntax error at EOF."
+
+    with pytest.raises(Error) as exception:
+        evaluate("@nutz")
+    assert str(exception.value) == "illegal character '@'."
 
 def test_original():
     assert evaluate("9") == 9
@@ -133,7 +169,7 @@ def test_original():
     assert evaluate("2**9") == 2**9
     #assert evaluate("sgn(-2)") == -1
     #assert evaluate("sgn(0)") == 0
-    with raises(Error) as exception:
+    with pytest.raises(Error) as exception:
         evaluate("foo(0.1)")
     assert str(exception.value) == "foo: function unknown."
     #assert evaluate("sgn(0.1)") == 1
