@@ -1,5 +1,4 @@
 from setuptools import setup
-from codecs import open
 
 with open('README.rst', encoding="UTF-8") as f:
     readme = f.read()
