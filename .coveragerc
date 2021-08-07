@@ -4,5 +4,5 @@ exclude_lines =
     raise NotImplementedError
 
 [run]
-source = quantiphy_eval.py
+source = quantiphy_eval
 omit = */.tox/*
