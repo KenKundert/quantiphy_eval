@@ -4,6 +4,12 @@ QuantiPhy Eval — Computations with Physical Quantities
 .. image:: https://pepy.tech/badge/quantiphy_eval/month
     :target: https://pepy.tech/project/quantiphy_eval
 
+..  image:: https://github.com/KenKundert/quantiphy_eval/actions/workflows/build.yaml/badge.svg
+    :target: https://github.com/KenKundert/quantiphy_eval/actions/workflows/build.yaml
+
+.. image:: https://coveralls.io/repos/github/KenKundert/quantiphy_eval/badge.svg?branch=master
+    :target: https://coveralls.io/github/KenKundert/quantiphy_eval?branch=master
+
 .. image:: https://img.shields.io/pypi/v/quantiphy_eval.svg
     :target: https://pypi.python.org/pypi/quantiphy_eval
 
