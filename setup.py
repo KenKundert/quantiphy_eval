@@ -19,6 +19,7 @@ setup(
     install_requires = 'inform>=1.23 quantiphy>=2.13 sly>=0.4'.split(),
     tests_require = 'pytest'.split(),
     python_requires = '>=3.6',
+    zip_safe = True,
     classifiers = [
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
