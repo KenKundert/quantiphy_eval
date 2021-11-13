@@ -136,7 +136,7 @@ end of the line is ignored::
     $697,351.33
 
 Finally, *QuantiPhy Eval* uses `inform.Error <https://inform.readthedocs.io>`_ 
-for error reporting.
+for error reporting::
 
     >>> from inform import Error
 
