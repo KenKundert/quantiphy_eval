@@ -102,10 +102,10 @@ def test_quantities2():
 
 def test_functions():
     assert evaluate('abs(-1+-1)').render() == '2'
-    #assert evaluate('abs(-1 MHz)', 'Hz').render() == '1 MHz'
+    assert evaluate('abs(-2 MHz)', 'Hz').render() == '2 MHz'
     assert evaluate('abs($161840.03)', '$').render() == '$161.84k'
     assert evaluate('abs(1e-9)', 'F').render() == '1 nF'
-    #assert evaluate('max(1MHz, 4MHz)').render() == '4 MHz'
+    assert evaluate('max(1MHz, 4MHz)').render() == '4 MHz'
     assert evaluate('max(1+1, 2+2)').render() == '4'
     assert evaluate('max(1+1, 2+2, 3+3)').render() == '6'
 

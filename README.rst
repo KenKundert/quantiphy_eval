@@ -66,14 +66,14 @@ However, you can add your own constants::
 
     >>> Vt = evaluate('k*T/q', 'Vt V thermal voltage')
     >>> print(Vt.render(show_label='f'))
-    Vt = 25.693 mV -- thermal voltage
+    Vt = 25.693 mV — thermal voltage
 
 Alternatively, you can specify the model directly in the text passed to 
 *evaluate*. Simply append it in the form of a double-quoted string.
 
     >>> Vt = evaluate('k*T/q "Vt V thermal voltage"')
     >>> print(Vt.render(show_label='f'))
-    Vt = 25.693 mV -- thermal voltage
+    Vt = 25.693 mV — thermal voltage
 
 You can also use *evaluate* to assign values to names directly, *QuantiPhy Eval* 
 remembers these values between calls to *evaluate*::
