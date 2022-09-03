@@ -81,7 +81,7 @@ class QELexer(Lexer):
     CURRENCY_WITH_EXPONENT = f'{_currency}{_mantissa}{_exponent}'
     CURRENCY_WITH_SCALE_FACTOR = f'{_currency}{_mantissa}{_scale_factor}'
     SIMPLE_CURRENCY = f'{_currency}{_mantissa}'
-    UNITS = f'"[^"]*"'
+    UNITS = '"[^"]*"'
 
     # names
     _greek = "αβγδεζηθικλνξοπρςστµμυφχψω"
@@ -119,29 +119,24 @@ class QEParser(Parser):
         '**': operator.pow,
     }
 
-
     # rules {{{2
     @_("NAME '=' expr")
     def statement(self, p):
         VARIABLES[p.NAME] = p.expr
         return p.NAME, p.expr
 
-
     @_("NAME '=' expr UNITS")
     def statement(self, p):
         VARIABLES[p.NAME] = p.expr
         return p.NAME, QUANTITY(p.expr, p.UNITS[1:-1])
 
-
     @_("expr")
     def statement(self, p):
         return None, p.expr
 
-
     @_("expr UNITS")
     def statement(self, p):
         return None, QUANTITY(p.expr, p.UNITS[1:-1])
-
 
     @_("expr '+' expr",
        "expr '-' expr",
@@ -153,16 +148,13 @@ class QEParser(Parser):
         op = self.binary_operators[p[1]]
         return op(p.expr0, p.expr1)
 
-
     @_("'-' expr %prec UMINUS")
     def expr(self, p):
         return -p.expr
 
-
     @_("'(' expr ')'")
     def expr(self, p):
         return p.expr
-
 
     @_("SIMPLE_NUMBER",
        "NUMBER_WITH_EXPONENT",
@@ -172,7 +164,6 @@ class QEParser(Parser):
     def expr(self, p):
         return QUANTITY(p[0])
 
-
     @_("NAME")
     def expr(self, p):
         try:
@@ -180,11 +171,9 @@ class QEParser(Parser):
         except LookupError:
             raise Error("variable unknown.", culprit=get_culprit(p.NAME))
 
-
     @_("function")
     def expr(self, p):
         return p.function
-
 
     @_("NAME '(' arg_list ')'")
     def function(self, p):
@@ -197,26 +186,21 @@ class QEParser(Parser):
         except Exception as e:
             raise Error(full_stop(e), culprit=get_culprit(p.NAME))
 
-
     @_("arg ',' arg_list")
     def arg_list(self, p):
         return [p.arg] + p.arg_list
-
 
     @_("arg")
     def arg_list(self, p):
         return [p.arg]
 
-
     @_("")
     def arg_list(self, p):
         return []
 
-
     @_("expr")
     def arg(self, p):
         return p.expr
-
 
     def error(self, p):
         if p:
@@ -229,7 +213,6 @@ class QEParser(Parser):
 
 lexer = QELexer()
 parser = QEParser()
-
 
 
 # Public functions {{{1
