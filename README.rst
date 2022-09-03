@@ -155,6 +155,7 @@ Releases
     | Version: 0.5.0
     | Released: 2022-09-02
 
+**0.5 (2022-09-02)**:
     - refactor the project structure
     - provide *qe* example, a simple calculator
 
