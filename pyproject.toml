@@ -1,6 +1,6 @@
 [project]
 name = "quantiphy_eval"
-version = "0.4.0"
+version = "0.5.0"
 description = "calculations with physical quantities"
 readme = "README.rst"
 requires-python = ">=3.6"

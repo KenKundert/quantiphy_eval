@@ -17,8 +17,8 @@ QuantiPhy Eval — Computations with Physical Quantities
     :target: https://pypi.python.org/pypi/quantiphy_eval/
 
 :Author: Ken Kundert
-:Version: 0.4.0
-:Released: 2021-01-27
+:Version: 0.5.0
+:Released: 2022-09-02
 
 
 A companion to `QuantiPhy <https://quantiphy.readthedocs.io>`_, *quantiphy_eval* 
@@ -152,8 +152,8 @@ Releases
 --------
 
 **Latest development release**:
-    | Version: 0.4.0
-    | Released: 2021-01-27
+    | Version: 0.5.0
+    | Released: 2022-09-02
 
     - refactor the project structure
     - provide *qe* example, a simple calculator
