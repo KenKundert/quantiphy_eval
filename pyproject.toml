@@ -1,0 +1,60 @@
+[project]
+name = "quantiphy_eval"
+version = "0.4.0"
+description = "calculations with physical quantities"
+readme = "README.rst"
+requires-python = ">=3.6"
+license = {file = "LICENSE"}
+keywords = [
+    "quantities", "physical", "quantity", "units", "SI", "scale factors",
+    "engineering", "notation", "mks", "cgs"
+]
+authors = [
+  {name = "Ken Kundert"},
+  {email = "quantiphy@nurdletech.com"}
+]
+maintainers = [
+  {name = "Ken Kundert"},
+  {email = "quantiphy@nurdletech.com"}
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Natural Language :: English",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Topic :: Utilities",
+  "Topic :: Scientific/Engineering",
+]
+dependencies = [
+  "inform>=1.23",
+  "quantiphy>=2.13",
+  "sly>=0.4"
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+  "pytest-cov",
+  "tox",
+  "pylama",
+]
+
+[project.urls]
+homepage = "https://github.com/kenkundert/quantiphy_eval"
+documentation = "https://github.com/kenkundert/quantiphy_eval"
+repository = "https://github.com/kenkundert/quantiphy_eval"
+changelog = "https://github.com/kenkundert/quantiphy_eval#releases"
+
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+
+

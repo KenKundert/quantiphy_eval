@@ -1,0 +1,106 @@
+#!/usr/bin/env python3
+"""
+QuantiPhy Eval
+
+This program interactively evaluates single-line expressions until you enter 
+Ctrl-D.  Numbers support SI scale factors and units and may contain commas.
+
+Usage:
+    qe [--fixed [<N>]]
+    qe [--si [<N>]]
+
+Options:
+    -f, --fixed      use fixed notation with a precision of N digits
+    -s, --si         use SI notation with a precision of N digits
+
+You can type an expression on a line, which is evaluated when you type Enter.
+
+You can create variables by instead typing assignments.
+
+You can access the last computed value using the variable ‘_’.
+
+It supports common numerical and physical constants:
+  pi, tau, h, k, q, c exp0, mu0, T0
+And some simple functions:
+  avg (average), exp, ln, log, max, med (median), min, rt (sqrt)
+Separate function arguments with semicolons rather than commas.
+
+Any units given do not propagate through operations.  You can specify the units 
+of the final result by adding # ❬units❭.  For example:
+    0.00: avg($134,569; $178,268; $104,749)
+    139,195.33: _ # $
+    $139,195.33:
+"""
+
+from inform import Error
+from quantiphy_eval import initialize, evaluate, rm_commas, Quantity
+from math import pi, tau, exp, log, log10, sqrt
+from docopt import docopt
+
+variables = dict(
+    pi = pi,
+    π = pi,
+    tau = tau,
+    τ = tau,
+)
+for constant in 'h ħ k q c ε₀ eps0 μ₀ mu0'.split():
+    variables[constant] = Quantity(constant)
+
+variables['T₀'] = Quantity('0°C')
+variables['T0'] = Quantity('0°C')
+
+def median(*args):
+    args = sorted(args)
+    n = len(args)
+    m = n//2
+    if n % 2:
+        return args[m]
+    return (args[m] + args[m-1])/2
+
+def average(*args):
+    return sum(args)/len(args)
+
+functions = dict(
+    med = median,
+    avg = average,
+    min = min,
+    max = max,
+    exp = exp,
+    ln = log,
+    log = log10,
+    rt = sqrt,
+)
+
+cmdline = docopt(__doc__)
+fixed = cmdline['--fixed']
+si = cmdline['--si']
+N = cmdline['<N>']
+if N is None:
+    N = 2
+if fixed:
+    Quantity.set_prefs(prec=N, form='fixed', strip_zeros=False, show_commas=True)
+if si:
+    Quantity.set_prefs(prec=N, form='si')
+
+initialize(variables, functions)
+
+result = Quantity(0)
+try:
+    while expr := input(f"{result}: "):
+        assignment, _, units = expr.partition('#')
+        name, _, expr = assignment.partition('=')
+        if expr:
+            name = name.strip()
+        else:
+            expr = assignment
+            name = None
+        try:
+            result = evaluate(rm_commas(expr), units)
+            variables['_'] = result
+            if name:
+                variables[name] = result
+        except Error as e:
+            e.report()
+except EOFError:
+    pass
+

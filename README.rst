@@ -69,7 +69,7 @@ However, you can add your own constants::
     Vt = 25.693 mV — thermal voltage
 
 Alternatively, you can specify the model directly in the text passed to 
-*evaluate*. Simply append it in the form of a double-quoted string.
+*evaluate*. Simply append it in the form of a double-quoted string::
 
     >>> Vt = evaluate('k*T/q "Vt V thermal voltage"')
     >>> print(Vt.render(show_label='f'))
@@ -154,6 +154,9 @@ Releases
 **Latest development release**:
     | Version: 0.4.0
     | Released: 2021-01-27
+
+    - refactor the project structure
+    - provide *qe* example, a simple calculator
 
 **0.4 (2021-01-27)**:
     - Add ability to explicitly specify units (or model) in evaluated string.
