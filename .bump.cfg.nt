@@ -1,0 +1,14 @@
+major: 0
+minor: 4
+patch: 0
+revision: 0
+type: release
+files:
+    pyproject.toml:
+        version: version
+    src/quantiphy_eval.py:
+        version: __version__
+        date: __released__
+    README.rst:
+        version: Version
+        date: Released

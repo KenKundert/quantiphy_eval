@@ -32,8 +32,7 @@ of the final result by adding # ❬units❭.  For example:
     $139,195.33:
 """
 
-from inform import Error
-from quantiphy_eval import initialize, evaluate, rm_commas, Quantity
+from quantiphy_eval import initialize, evaluate, rm_commas, Quantity, Error
 from math import pi, tau, exp, log, log10, sqrt
 from docopt import docopt
 
