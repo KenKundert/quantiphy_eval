@@ -92,7 +92,7 @@ try:
             name = name.strip()
         else:
             expr = assignment
-            name = None
+            name = ""
         try:
             result = evaluate(rm_commas(expr), units)
             variables['_'] = result

@@ -4,7 +4,6 @@ version = "0.5.0"
 description = "calculations with physical quantities"
 readme = "README.rst"
 requires-python = ">=3.6"
-license = {file = "LICENSE"}
 keywords = [
     "quantities", "physical", "quantity", "units", "SI", "scale factors",
     "engineering", "notation", "mks", "cgs"
@@ -24,11 +23,7 @@ classifiers = [
   "License :: OSI Approved :: MIT License",
   "Natural Language :: English",
   "Operating System :: POSIX :: Linux",
-  "Programming Language :: Python :: 3.6",
-  "Programming Language :: Python :: 3.7",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3",
   "Topic :: Utilities",
   "Topic :: Scientific/Engineering",
 ]
@@ -55,6 +50,3 @@ changelog = "https://github.com/kenkundert/quantiphy_eval#releases"
 [build-system]
 requires = ["flit_core >=2,<4"]
 build-backend = "flit_core.buildapi"
-
-
-
