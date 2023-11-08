@@ -28,7 +28,7 @@ classifiers = [
   "Topic :: Scientific/Engineering",
 ]
 dependencies = [
-  "inform>=1.23",
+  "inform>=1.28",
   "quantiphy>=2.13",
   "sly>=0.4"
 ]
